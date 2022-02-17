@@ -74,6 +74,13 @@ bindsym $mod+$alt+Ctrl+c exec google-chrome
 bindsym $mod+$alt+t exec pgrep thunderbird && i3-msg '[class="Thunderbird"] focus' || thunderbird
 bindsym $mod+$alt+Ctrl+t exec thunderbird
 
+# Thunar File Manager
+# bindsym $mod+e exec pgrep thunar && i3-msg '[class="Thunar"] focus' || thunar
+
+# Nautilus File Manager
+# Nautilus takes forever to actually kill when the user exits, so don't even bother which trying to get focus
+bindsym $mod+e exec nautilus
+
 ### End Program Shortcuts ###
 
 # kill focused window
@@ -118,12 +125,12 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym $mod+F11 fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+o layout stacking
+bindsym $mod+comma layout tabbed
+bindsym $mod+period layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -149,6 +156,9 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+bindsym $mod+Ctrl+Up workspace 1; workspace 2
+bindsym $mod+Ctrl+Down workspace 9; workspace 10
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -161,6 +171,12 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Take a screenshot of screen region and copy to clipboard
+bindsym --release Shift+Print exec "scregcp -s ~/Pictures/"
+
+# Take a screenshot of window and copy to clipboard"
+bindsym --release Print exec "scregcp ~/Pictures/"
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -170,7 +186,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+l exit i3
 
 # Lock session
-bindsym $mod+l exec "i3lock -c 000000"
+# bindsym $mod+l exec "i3lock -c 000000"
+bindsym $mod+l exec dm-tool lock
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
