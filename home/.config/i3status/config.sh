@@ -3,12 +3,17 @@
 i3status | while :
 do
     read line
-    LG=$(setxkbmap -query | awk '/layout/{print $2}')
-    if [ $LG == "dvorak" ]
-    then
-        dat="[{ \"full_text\": \"$LG\", \"color\":\"#009E00\" },"
-    else
-        dat="[{ \"full_text\": \"$LG\", \"color\":\"#C60101\" },"
-    fi
+
+#    KB_LAYOUT=$(setxkbmap -query | awk '/layout/{print $2}')
+#    if [ $KB_LAYOUT == "dvorak" ]
+#    then
+#        dat="[{ \"full_text\": \"$KB_LAYOUT\", \"color\":\"#009E00\" },"
+#    else
+#        dat="[{ \"full_text\": \"$KB_LAYOUT\", \"color\":\"#C60101\" },"
+#    fi
+
+    TIMECARD=$(~/.local/bin/timecard i3status)
+    dat="[{ \"full_text\": \"$TIMECARD\" },"
+
     echo "${line/[/$dat}" || exit 1
 done
