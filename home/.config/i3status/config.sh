@@ -13,7 +13,12 @@ do
 #    fi
 
     TIMECARD=$(~/.local/bin/timecard i3status)
-    dat="[{ \"full_text\": \"$TIMECARD\" },"
-
+    if [ ${TIMECARD:0:3} == "OUT" ]
+    then
+        dat="[{ \"full_text\": \"$TIMECARD\", \"color\":\"#FF0101\" },"
+    else
+        dat="[{ \"full_text\": \"$TIMECARD\", \"color\":\"#00FF00\" },"
+    fi 
+ 
     echo "${line/[/$dat}" || exit 1
 done

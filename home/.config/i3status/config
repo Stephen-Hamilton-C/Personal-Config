@@ -14,7 +14,7 @@ general {
 
 order += "disk /"
 order += "disk /nishome2"
-order += "ethernet _first_"
+#order += "ethernet _first_"
 order += "tztime utc"
 order += "tztime local"
 
